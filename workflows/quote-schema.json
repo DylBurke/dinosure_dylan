@@ -1,60 +1,23 @@
 [
   {
-    "key": "start_date",
-    "type": "date",
+    "type": "date-picker",
     "label": "Policy start date *",
-    "outputPath": "start_date",
-    "validators": [
-      {
-        "validation": {
-          "type": "required"
-        }
-      }
-    ]
+    "outputPath": "start_date"
   },
   {
-    "key": "cover_amount",
     "type": "currency",
     "label": "Cover amount (sum insured) *",
     "props": {
       "prefix": "R"
     },
-    "outputPath": "cover_amount",
-    "validators": [
-      {
-        "validation": {
-          "type": "required"
-        }
-      },
-      {
-        "validation": {
-          "min": 1000000,
-          "type": "greaterThanCurrency"
-        }
-      },
-      {
-        "validation": {
-          "max": 10000000,
-          "type": "lessThanCurrency"
-        }
-      }
-    ]
+    "outputPath": "cover_amount"
   },
   {
-    "key": "birth_date",
-    "type": "date",
+    "type": "date-picker",
     "label": "Dinosaur's birth date *",
-    "outputPath": "birth_date",
-    "validators": [
-      {
-        "validation": {
-          "type": "required"
-        }
-      }
-    ]
+    "outputPath": "birth_date"
   },
   {
-    "key": "species",
     "type": "select",
     "label": "Dinosaur species *",
     "options": [
@@ -79,27 +42,12 @@
         "value": "Iguanodon"
       }
     ],
-    "outputPath": "species",
-    "validators": [
-      {
-        "validation": {
-          "type": "required"
-        }
-      }
-    ]
+    "outputPath": "species"
   },
   {
-    "key": "health_checks_updated",
     "type": "checkbox",
     "label": "Dinosaur's health checks are up to date",
     "outputPath": "health_checks_updated",
-    "validators": [
-      {
-        "validation": {
-          "type": "required"
-        }
-      }
-    ],
     "defaultValue": false
   }
 ]
