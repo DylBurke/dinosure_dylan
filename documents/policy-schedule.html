@@ -1,0 +1,335 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- < linkrel="stylesheet" href="https://fonts.googleapis.com/css?family=Calibri"> -->
+    <style type="text/css">
+      body {
+        font-family: 'Lato-Regular', avenir, Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+        font-size: 10px;
+      }
+
+      .page {
+        width: 13cm;
+        min-height: 19.8cm;
+        height: 19.8cm;
+        page-break-after: always;
+        position: relative;
+      }
+
+      .page.no-break {
+        page-break-after: auto;
+      }
+
+      .header {
+        width: 100%;
+      }
+
+      .header img {
+        display: inline-block;
+        width: 25%;
+      }
+
+      .header :last-child {
+        /* margin-left: 40%; */
+        /* position: static; */
+        /* margin-right: 0; */
+        float: right;
+        /* width: 34%; */
+        /* display: inline-block; */
+        /* font-size: 16px; */
+        /* color: #1a34cf;
+        font-weight: bold; */
+      }
+
+      .main-heading {
+        color: #1a34cf;
+        width: 100%;
+        font-size: 20px;
+      }
+
+      .sub-heading {
+        width: 100%;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+
+      .one-three-split {
+        line-height: 16px;
+        padding: 4px;
+        display: inline-block;
+        width: 100%;
+        background-color: #f4f4f4;
+        margin-bottom: 2px;
+      }
+
+      .one-three-split > :nth-child(1) {
+        display: inline-block;
+        width: 25%;
+        vertical-align: top;
+        font-weight: bold;
+      }
+
+      .one-three-split > :nth-child(2) {
+        display: inline-block;
+        margin-left: 5%;
+        width: 60%;
+      }
+
+      .padded {
+        padding: 20px 20px 20px 0;
+      }
+
+      .three-way-split > * {
+        display: inline-block;
+      }
+
+      .three-way-split :nth-child(1) {
+        width: 35%;
+      }
+
+      .three-way-split :nth-child(2) {
+        width: 15%;
+      }
+
+      .three-way-split :nth-child(3) {
+        width: 45%;
+      }
+
+      .three-way-split > span {
+        color: #1a34cf;
+      }
+
+      .main-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10px;
+        margin: 20px 0;
+      }
+
+      .main-table > :first-child {
+        font-weight: bold;
+        background: #4bacc6;
+      }
+
+      .main-table td {
+        border: 1px solid grey;
+        padding: 2px;
+        vertical-align: top;
+      }
+
+      .main-table .ninja {
+        border: none;
+        padding: 8px;
+        column-span: all;
+      }
+
+      .stamp {
+        font-weight: bolder;
+        color: #bd10e0;
+        position: absolute;
+        left: 10%;
+        top: 25%;
+        z-index: 2;
+        text-align: center;
+        transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+      }
+
+      .stamp h1 {
+        font-size: 6rem;
+      }
+
+      .stamp h2 {
+        font-size: 2.5rem;
+      }
+
+      .statutory-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10px;
+        margin: 20px 0;
+      }
+
+      .statutory-table thead {
+        background: rgb(51, 51, 51);
+        color: white;
+      }
+
+      .statutory-table td {
+        vertical-align: top;
+        padding: 4px;
+        border: solid 1px rgb(51, 51, 51);
+      }
+
+      .statutory-table td > ul {
+        padding: 0 0 0 20px;
+      }
+
+      .cover-image {
+        width: 100%;
+      }
+
+      .cover-heading {
+        margin-top: 64px;
+        color: #1a34cf;
+        width: 100%;
+      }
+
+      .cover-heading > h1 {
+        width: 100%;
+        font-size: xx-large;
+        text-align: center;
+        color: rgb(69, 69, 69);
+      }
+
+      .cover-footer {
+        margin-top: 240px;
+        color: #1a34cf;
+        width: 100%;
+      }
+
+      .cover-footer > h1 {
+        width: 100%;
+        text-align: center;
+        color: rgb(69, 69, 69);
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+      }
+
+      .footer > span {
+        display: inline-block;
+        width: 25%;
+      }
+
+      .footer > div {
+        position: relative;
+        text-align: center;
+      }
+
+      .footer > .omart {
+        position: absolute;
+        width: 50%;
+        bottom: 0;
+        text-align: left;
+        padding-bottom: 12px;
+        font-size: 9px;
+      }
+
+      strong {
+        color: #ff75c2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page 1 no-break">
+      {{#sandbox}}
+      <div class="stamp">
+        <h1>- VOID -</h1>
+        <h2>for demo purposes only</h2>
+      </div>
+      {{/sandbox}}
+      <div class="header">
+        <img
+          src="https://storage.googleapis.com/root-production-public-client-images/Dinosure%20Demo/dinosure-logo.png"
+        />
+      </div>
+
+      <h1><strong>POLICY SCHEDULE</strong></h1>
+
+      <div class="padded" style="padding-top: 0px; margin-bottom: 0; padding-bottom: 0">
+        <p>
+          Before humans there lived on this earth tyrannosaurus, velociraptor and more. Predator and herbivores alike
+          including the spinosaurus, brachiosaurus, oviraptor and allosaurus.
+        </p>
+
+        <p><strong>TERM LIFE COVER</strong></p>
+
+        <div class="one-three-split">
+          <div>Policy Number</div>
+          <div>{{ policy.policy_number }}</div>
+        </div>
+        <div class="one-three-split">
+          <div>Name of insured</div>
+          <div>{{ policyholder.first_name }} {{ policyholder.last_name }}</div>
+        </div>
+        <div class="one-three-split">
+          <div>ID Number</div>
+          <div>{{ policyholder.id.number }}</div>
+        </div>
+
+        <br /><br />
+
+        <p><strong>COVER DETAILS</strong></p>
+
+        <div class="one-three-split">
+          <div>Start date</div>
+          <div>{{dateFormat policy.start_date format='DD MMM YYYY'}}</div>
+        </div>
+        <div class="one-three-split">
+          <div>Sum assured</div>
+          <div>{{formatCurrency policy.sum_assured policy.currency locale="en-GB"}}</div>
+        </div>
+        <div class="one-three-split">
+          <div>Monthly premium</div>
+          <div>{{formatCurrency policy.monthly_premium policy.currency locale="en-GB"}}</div>
+        </div>
+        <div class="one-three-split">
+          <div>Payment frequency</div>
+          <div>Monthly on the {{ ordinalString policy.billing_day }} day of the month</div>
+        </div>
+        <br /><br />
+
+        <p><strong>PREMIUM BREAKDOWN</strong></p>
+
+        <div class="one-three-split">
+          <div>Risk premium</div>
+          <div>{{formatCurrency policy.module.premium_breakdown.risk_premium policy.currency locale="en-GB"}}</div>
+        </div>
+        <div class="one-three-split">
+          <div>EWN benefit</div>
+          <div>
+            {{#if policy.module.early_warning_network_benefit "===" true}}{{formatCurrency
+            policy.module.premium_breakdown.early_warning_network_benefit_premium policy.currency
+            locale="en-GB"}}{{else}}N/A{{/if}}
+          </div>
+        </div>
+        <div class="one-three-split">
+          <div>Extraction benefit</div>
+          <div>
+            {{#if policy.module.extraction_benefit "===" true}}{{formatCurrency
+            policy.module.premium_breakdown.extraction_benefit_premium policy.currency
+            locale="en-GB"}}{{else}}N/A{{/if}}
+          </div>
+        </div>
+        <br /><br />
+
+        <p><strong>CLAIMS PROCESS</strong></p>
+
+        <p style="line-height: 16px">
+          Please make sure that you submit your claim in writing within 90 days from the date of the occurrence of any
+          event that could result in a claim against this policy. You can lodge a claim on our website or by calling us
+          on 001-337-1337.
+        </p>
+      </div>
+      <div class="footer">
+        <img
+          style="width: 100%; height: 100px"
+          src="https://storage.googleapis.com/root-production-public-client-images/Dinosure%20Demo/isla-nubar-footer.png"
+        />
+        <div class="omart">
+          Dinosure is a demo application by Root. The app source code is open- sourced and MIT licensed. Dinosure is an
+          unauthorised financial services provider. FSP number 13371337. 3 Sauropoda Lane, Isla Nublar, 4242
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+{
+  "$schema": "https://sandbox.rootplatform.com//v1/cli/json-schemas/root-config",
+  "productModuleName": "Dinosure Dylan",
+  "productModuleKey": "dinosure_dylan",
+  "organizationId": "24b3099b-b90e-4825-806b-2ba867d58591",
+  "host": "https://sandbox.rootplatform.com/",
+  "stack": "root-node-20",
+  "codeFileOrder": [
+    "main.js",
+    "00-helpers.js",
+    "01-ratings.js",
+    "02-quote-hook.js",
+    "03-application-hook.js",
+    "04-policy-hook.js",
+    "05-alteration-hooks.js",
+    "06-lifecycle-hooks.js",
+    "07-scheduled-functions.js"
+  ],
+  "settings": {
+    "policySchemeType": "individual",
+    "dashboardIssuingEnabled": true,
+    "activatePoliciesOnEvent": "policy_issued",
+    "defaultStatus": "pending_initial_payment",
+    "canReactivatePolicies": false,
+    "notTakenUp": {
+      "enabled": false,
+      "failedPaymentsBeforeNTU": 1
+    },
+    "preventPolicyLapseAndNTU": false,
+    "welcomeLetterEnabled": true,
+    "policyDocuments": [
+      {
+        "type": "terms",
+        "fileName": "policy_{{ policy.policy_number }}_terms"
+      },
+      {
+        "type": "policy_schedule",
+        "fileName": "policy_{{ policy.policy_number }}_schedule"
+      },
+      {
+        "type": "certificate",
+        "enabled": false
+      }
+    ],
+    "canRequote": false,
+    "gracePeriod": {
+      "lapseOn": {
+        "afterFirstMissedPayment": {
+          "period": 15,
+          "periodType": "days"
+        },
+        "consecutiveMissedPayments": null,
+        "missedPaymentsOverPolicyTerm": null,
+        "missedPaymentsWithinPeriod": null
+      },
+      "lapseExclusionRules": {
+        "lapsePolicyWithProcessingPayment": false
+      }
+    },
+    "waitingPeriod": {
+      "applyTo": {
+        "theFullPolicy": {
+          "period": 30,
+          "periodType": "days"
+        }
+      }
+    },
+    "coolingOffPeriod": {
+      "applyTo": {
+        "theFullPolicy": {
+          "refundType": "all_premiums",
+          "period": 1,
+          "periodType": "months"
+        }
+      }
+    },
+    "policyAnniversaryNotification": null,
+    "policyholder": {
+      "individualsAllowed": true,
+      "individualsIdAllowed": true,
+      "individualsPassportAllowed": true,
+      "individualsCellphoneAllowed": false,
+      "individualsCustomIdAllowed": false,
+      "individualsEmailAllowed": false,
+      "idCountry": "GB",
+      "companiesAllowed": false,
+      "individualPolicyholderFields": {
+        "address": {
+          "suburb": {
+            "required": true
+          }
+        },
+        "dateOfBirth": {
+          "required": true
+        }
+      }
+    },
+    "beneficiaries": {
+      "makePolicyholderABeneficiary": false,
+      "min": 1,
+      "max": 1,
+      "individualBeneficiaryFields": {
+        "dateOfBirth": {
+          "required": false
+        },
+        "address": {
+          "displayAddress": false
+        }
+      }
+    },
+    "claims": {
+      "checklistItems": [],
+      "documentLabels": [],
+      "enableClaimAssignments": false,
+      "enableLegacyClaimsSchema": true
+    },
+    "billing": {
+      "allowStartDateChange": false,
+      "billBeforeWeekendEnabled": false,
+      "billingFrequency": "monthly",
+      "consecutiveFailedPaymentsAllowed": 4,
+      "currency": "GBP",
+      "enableBillingOnSandbox": false,
+      "paymentSubmissionLeadTime": 0,
+      "clientStatementReference": "<set_reference>",
+      "combineProRataAndPremium": {
+        "enabled": true,
+        "daysBeforeBilling": 5
+      },
+      "paymentMethodTypes": {
+        "debitOrders": {
+          "enabled": true,
+          "strategy": null,
+          "naedoPoliciesInArrears": false,
+          "assumeSuccess": {
+            "enabled": true,
+            "daysAfterPaymentDate": 5
+          }
+        },
+        "card": {
+          "enabled": false,
+          "assumeSuccess": {
+            "enabled": false
+          }
+        },
+        "eft": {
+          "enabled": false,
+          "assumeSuccess": {
+            "enabled": false
+          }
+        },
+        "external": {
+          "enabled": false,
+          "createPayments": false,
+          "assumeSuccess": {
+            "enabled": false
+          }
+        },
+        "collectionModules": []
+      },
+      "retryFailedPayments": {
+        "enabled": true,
+        "daysBetweenRetries": 5,
+        "numberOfRetries": 1
+      },
+      "proRataBilling": {
+        "enabled": true,
+        "proRataBillingOnIssue": false,
+        "minimumAmount": 1000
+      },
+      "doNotBlockPaymentMethodFailureCodes": {
+        "codes": [],
+        "enabled": false
+      },
+      "minimumPaymentAmount": {
+        "enabled": true,
+        "amountInCents": 1000
+      }
+    }
+  },
+  "alterationHooks": [],
+  "scheduledFunctions": [],
+  "fulfillmentTypes": [
+    {
+      "key": "extraction",
+      "label": "Extraction",
+      "fulfillmentData": {
+        "extraction_date": {
+          "label": "Date of extraction",
+          "valueType": "string"
+        }
+      }
+    }
+  ]
+}

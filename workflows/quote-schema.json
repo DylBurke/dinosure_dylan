@@ -1,0 +1,119 @@
+[
+  {
+    "key": "cover_amount",
+    "type": "currency",
+    "label": "Death benefit cover amount *",
+    "props": {
+      "prefix": "£"
+    },
+    "outputPath": "cover_amount",
+    "validators": [
+      {
+        "validation": {
+          "type": "required"
+        }
+      },
+      {
+        "validation": {
+          "min": 10000000,
+          "type": "greaterThanCurrency"
+        }
+      },
+      {
+        "validation": {
+          "max": 500000000,
+          "type": "lessThanCurrency"
+        }
+      }
+    ]
+  },
+  {
+    "key": "age",
+    "type": "number",
+    "label": "Age *",
+    "outputPath": "age",
+    "validators": [
+      {
+        "validation": {
+          "type": "required"
+        }
+      },
+      {
+        "validation": {
+          "min": 18,
+          "type": "greaterThanNumber"
+        }
+      },
+      {
+        "validation": {
+          "max": 63,
+          "type": "lessThanNumber"
+        }
+      }
+    ]
+  },
+  {
+    "key": "cardio_fitness_level",
+    "type": "select",
+    "label": "Cardio fitness level *",
+    "options": [
+      {
+        "label": "Couch Potato",
+        "value": "couch potato"
+      },
+      {
+        "label": "Marathon Runner",
+        "value": "marathon runner"
+      }
+    ],
+    "outputPath": "cardio_fitness_level",
+    "validators": [
+      {
+        "validation": {
+          "type": "required"
+        }
+      }
+    ]
+  },
+  {
+    "key": "smoker",
+    "type": "checkbox",
+    "label": "Smoker",
+    "outputPath": "smoker",
+    "validators": [
+      {
+        "validation": {
+          "type": "required"
+        }
+      }
+    ],
+    "defaultValue": false
+  },
+  {
+    "key": "space_1",
+    "type": "blank-space"
+  },
+  {
+    "key": "benefits_heading",
+    "type": "section-header",
+    "label": "Additional Benefits",
+    "props": {
+      "fontWeight": "normal",
+      "headingTag": "h4"
+    }
+  },
+  {
+    "key": "early_warning_network_benefit",
+    "type": "checkbox",
+    "label": "Early warning network benefit",
+    "outputPath": "early_warning_network_benefit",
+    "defaultValue": false
+  },
+  {
+    "key": "extraction_benefit",
+    "type": "checkbox",
+    "label": "Extraction team benefit",
+    "outputPath": "extraction_benefit",
+    "defaultValue": false
+  }
+]
