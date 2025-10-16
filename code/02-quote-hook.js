@@ -79,7 +79,6 @@ const getQuote = (data) => {
   const totalPremium = Math.round(adjustedPremium);
 
   const quotePackage = new QuotePackage({
-    // Below are standard fields for all products
     package_name: 'Dinosure Protection', // The name of the "package" of cover
     sum_assured: data.cover_amount, // Set the total, aggregated cover amount
     base_premium: totalPremium, // Should be an integer, SA cents

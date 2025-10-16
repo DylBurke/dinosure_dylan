@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "key": "dinosaur_name",
+    "type": "text",
+    "label": "Dinosaur's name *",
+    "outputPath": "dinosaur_name"
+  },
+  {
+    "key": "dinosaur_colour",
+    "type": "select",
+    "label": "Dinosaur's colour *",
+    "options": [
+      {
+        "label": "Lilac",
+        "value": "Lilac"
+      },
+      {
+        "label": "Sea green",
+        "value": "Sea green"
+      },
+      {
+        "label": "Granite grey",
+        "value": "Granite grey"
+      },
+      {
+        "label": "Midnight blue",
+        "value": "Midnight blue"
+      }
+    ],
+    "outputPath": "dinosaur_colour"
+  },
+  {
+    "key": "ndrn",
+    "type": "number",
+    "label": "National Dinosaur Registry Number (NDRN) *",
+    "outputPath": "ndrn"
+  }
+]

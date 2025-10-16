@@ -14,12 +14,20 @@
  * @see {@link https://docs.rootplatform.com/docs/application-hook Application hook}
  */
 const validateApplicationRequest = (data, policyholder, quote_package) => {
-  // Custom validation can be specified in the function body
   const result = Joi.validate(
     data,
     Joi.object()
       .keys({
-        // The Joi validation schema can be completed here
+        dinosaur_name: Joi.string()
+          .max(100)
+          .required(),
+        dinosaur_colour: Joi.valid(['Lilac', 'Sea green', 'Granite grey', 'Midnight blue'])
+          .required(),
+        ndrn: Joi.number()
+          .integer()
+          .min(100000)
+          .max(999999)
+          .required(),
       })
       .required(),
     { abortEarly: false },
@@ -38,7 +46,6 @@ const validateApplicationRequest = (data, policyholder, quote_package) => {
  */
 const getApplication = (data, policyholder, quote_package) => {
   const application = new Application({
-    // The top-level fields are standard across all product modules
     package_name: quote_package.package_name,
     sum_assured: quote_package.sum_assured,
     base_premium: quote_package.base_premium,

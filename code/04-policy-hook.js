@@ -12,13 +12,14 @@
  * @see {@link https://docs.rootplatform.com/docs/policy-issue-hook Policy issue hook}
  */
 const getPolicy = (application, policyholder, billing_day) => {
+
   const policy = new Policy({
-    package_name: application.package_name,
+    package_name: 'DinoSure',
     sum_assured: application.sum_assured,
     base_premium: application.base_premium,
     monthly_premium: application.monthly_premium,
-    start_date: moment().add(1, 'day').format(), // start tomorrow
-    end_date: moment().endOf('month').add(1, 'year').format(), // in 1 year
+    start_date: application.module.start_date,
+    end_date: null,
     charges: application.module.charges,
     module: {
       ...application.module,
