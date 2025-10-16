@@ -119,7 +119,7 @@
       "billBeforeWeekendEnabled": false,
       "billingFrequency": "monthly",
       "consecutiveFailedPaymentsAllowed": 4,
-      "currency": "GBP",
+      "currency": "ZAR",
       "enableBillingOnSandbox": false,
       "paymentSubmissionLeadTime": 0,
       "clientStatementReference": "DINOSURE",
