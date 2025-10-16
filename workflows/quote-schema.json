@@ -1,10 +1,12 @@
 [
   {
+    "key": "policy_start_date",
     "type": "date-picker",
     "label": "Policy start date *",
     "outputPath": "start_date"
   },
   {
+    "key": "cover_amount",
     "type": "currency",
     "label": "Cover amount (sum insured) *",
     "props": {
@@ -18,6 +20,7 @@
     "outputPath": "birth_date"
   },
   {
+    "key": "dinosaur_species",
     "type": "select",
     "label": "Dinosaur species *",
     "options": [
@@ -45,6 +48,7 @@
     "outputPath": "species"
   },
   {
+    "key": "health_checks_updated",
     "type": "checkbox",
     "label": "Dinosaur's health checks are up to date",
     "outputPath": "health_checks_updated",
