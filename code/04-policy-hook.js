@@ -20,7 +20,6 @@ const getPolicy = (application, policyholder, billing_day) => {
     monthly_premium: application.monthly_premium,
     start_date: application.module.start_date,
     end_date: null,
-    charges: application.module.charges,
     module: {
       ...application.module,
     },

@@ -122,7 +122,7 @@
       "currency": "GBP",
       "enableBillingOnSandbox": false,
       "paymentSubmissionLeadTime": 0,
-      "clientStatementReference": "<set_reference>",
+      "clientStatementReference": "DINOSURE",
       "combineProRataAndPremium": {
         "enabled": true,
         "daysBeforeBilling": 5

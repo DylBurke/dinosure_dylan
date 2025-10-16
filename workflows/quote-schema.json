@@ -15,6 +15,7 @@
     "outputPath": "cover_amount"
   },
   {
+    "key": "dinosaur_birth_date",
     "type": "date-picker",
     "label": "Dinosaur's birth date *",
     "outputPath": "birth_date"
