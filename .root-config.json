@@ -184,7 +184,20 @@
       "name": "Update cover"
     }
   ],
-  "scheduledFunctions": [],
+  "scheduledFunctions": [
+    {
+      "functionName": "anniversary_cover_increase",
+      "policyStatuses": [
+        "active"
+      ],
+      "frequency": {
+        "type": "yearly",
+        "monthOfYear": "january",
+        "dayOfMonth": 1,
+        "timeOfDay": "00:00"
+      }
+    }
+  ],
   "fulfillmentTypes": [
     {
       "key": "extraction",
