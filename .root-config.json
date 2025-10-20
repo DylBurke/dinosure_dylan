@@ -21,7 +21,7 @@
     "dashboardIssuingEnabled": true,
     "activatePoliciesOnEvent": "policy_issued",
     "defaultStatus": "pending_initial_payment",
-    "canReactivatePolicies": false,
+    "canReactivatePolicies": true,
     "notTakenUp": {
       "enabled": false,
       "failedPaymentsBeforeNTU": 1
