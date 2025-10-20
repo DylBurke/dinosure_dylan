@@ -1,0 +1,11 @@
+[
+  {
+    "key": "cover_amount",
+    "type": "currency",
+    "label": "New cover amount (sum insured) *",
+    "props": {
+      "prefix": "R"
+    },
+    "outputPath": "cover_amount"
+  }
+]

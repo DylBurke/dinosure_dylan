@@ -178,7 +178,12 @@
       }
     }
   },
-  "alterationHooks": [],
+  "alterationHooks": [
+    {
+      "key": "update_cover",
+      "name": "Update cover"
+    }
+  ],
   "scheduledFunctions": [],
   "fulfillmentTypes": [
     {
