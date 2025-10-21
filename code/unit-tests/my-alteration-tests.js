@@ -10,36 +10,34 @@ describe('Dinosure Alteration Hooks', function () {
   describe('validateAlterationPackageRequest', function () {
 
     it('should pass validation for valid data', function () {
-      const params = {
+      const context = {
         alteration_hook_key: 'update_cover',
         policy: {
           sum_assured: 5000000,
           monthly_premium: 13375,
         },
+        data: {
+          cover_amount: 7500000 // R75,000 in cents
+        }
       };
 
-      const alterationData = {
-        cover_amount: 7500000 // R75,000 in cents
-      };
-
-      const validation = validateAlterationPackageRequest(params, alterationData);
+      const validation = validateAlterationPackageRequest(context);
       expect(validation.error).to.equal(null);
     });
 
     it('should fail validation for invalid data', function () {
-      const params = {
+      const context = {
         alteration_hook_key: 'update_cover',
         policy: {
           sum_assured: 5000000,
           monthly_premium: 13375,
         },
+        data: {
+          cover_amount: 5000 * 100 // R5,000 - too low
+        }
       };
 
-      const alterationData = {
-        cover_amount: 5000 * 100 // R5,000 - too low
-      };
-
-      const validation = validateAlterationPackageRequest(params, alterationData);
+      const validation = validateAlterationPackageRequest(context);
       expect(validation.error).to.not.equal(null);
       expect(validation.error.details.length).to.be.greaterThan(0);
     });
@@ -48,7 +46,7 @@ describe('Dinosure Alteration Hooks', function () {
   describe('getAlteration', function () {
 
     it('should calculate correct premium for 20-year-old Tyrannosaurus Rex changing from R90,000 to R75,000', function () {
-      const params = {
+      const context = {
         alteration_hook_key: 'update_cover',
         policy: {
           package_name: 'DinoSure',
@@ -61,13 +59,12 @@ describe('Dinosure Alteration Hooks', function () {
           },
         },
         policyholder: {},
+        data: {
+          cover_amount: 7500000 // R75,000 in cents
+        }
       };
 
-      const alterationData = {
-        cover_amount: 7500000 // R75,000 in cents
-      };
-
-      const alterationPackage = getAlteration(params, alterationData);
+      const alterationPackage = getAlteration(context);
 
       // Expected: 7,500,000 × 20 × 0.0001 × 0.81 = 15,000 × 0.81 = 12,150 cents = R121.50
       expect(alterationPackage.sum_assured).to.equal(7500000);
@@ -75,7 +72,7 @@ describe('Dinosure Alteration Hooks', function () {
     });
 
     it('should calculate correct premium for 36-year-old Velociraptor changing from R50,000 to R75,000', function () {
-      const params = {
+      const context = {
         alteration_hook_key: 'update_cover',
         policy: {
           package_name: 'DinoSure',
@@ -88,13 +85,12 @@ describe('Dinosure Alteration Hooks', function () {
           },
         },
         policyholder: {},
+        data: {
+          cover_amount: 7500000 // R75,000 in cents
+        }
       };
 
-      const alterationData = {
-        cover_amount: 7500000 // R75,000 in cents
-      };
-
-      const alterationPackage = getAlteration(params, alterationData);
+      const alterationPackage = getAlteration(context);
 
       // Expected: 7,500,000 × 36 × 0.0001 × 0.76 = 27,000 × 0.76 = 20,520 cents = R205.20
       expect(alterationPackage.sum_assured).to.equal(7500000);

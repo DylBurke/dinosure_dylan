@@ -7,13 +7,17 @@
  * @param {object} context The context object containing alteration hook key and policy.
  * @param {string} context.alteration_hook_key The alteration hook identifier.
  * @param {PlatformPolicy} context.policy The policy to which the alteration package will be applied.
- * @param {Record<string, any>} params The data received in the body of the alteration request.
  * @return {{error: any; value: any}} The validation result.
  */
-const validateAlterationPackageRequest = ({ alteration_hook_key, policy }, params) => {
+const validateAlterationPackageRequest = ({ alteration_hook_key, policy, data }) => {
   if (alteration_hook_key === 'update_cover') {
+    // If no data, this is the initial form load - return success to allow form to render
+    if (!data || Object.keys(data).length === 0) {
+      return { error: null, value: {} };
+    }
+
     const result = Joi.validate(
-      params,
+      data,
       Joi.object()
         .keys({
           cover_amount: Joi.number()
@@ -25,6 +29,7 @@ const validateAlterationPackageRequest = ({ alteration_hook_key, policy }, param
         .required(),
       { abortEarly: false },
     );
+
     return result;
   }
 
@@ -37,12 +42,24 @@ const validateAlterationPackageRequest = ({ alteration_hook_key, policy }, param
  * @param {string} context.alteration_hook_key The alteration hook identifier.
  * @param {PlatformPolicy} context.policy The policy to which the alteration package will be applied.
  * @param {PlatformPolicyholder} context.policyholder The policyholder linked to the policy.
- * @param {Record<string, any>} params The validated data returned by validateAlterationPackageRequest.
  * @return {AlterationPackage} The alteration package.
  */
-const getAlteration = ({ alteration_hook_key, policy, policyholder }, params) => {
+const getAlteration = ({ alteration_hook_key, data, policy, policyholder }) => {
+  // If data is empty or doesn't have cover_amount, return preview for form load
+  if (data === undefined || data === null || !data.cover_amount) {
+    return new AlterationPackage({
+      sum_assured: policy.sum_assured,
+      monthly_premium: policy.monthly_premium,
+      change_description: 'Preview',
+      billing_frequency: 'monthly',
+      module: { ...policy.module },
+      input_data: {},
+    });
+  }
+
   if (alteration_hook_key === 'update_cover') {
-    const newCoverAmount = params.cover_amount;
+
+    const newCoverAmount = data.cover_amount;
     const age = policy.module.age;
 
     // Recalculate premium using the same formula as quote
@@ -75,7 +92,7 @@ const getAlteration = ({ alteration_hook_key, policy, policyholder }, params) =>
         old_cover_amount: policy.sum_assured,
         old_premium: policy.monthly_premium,
       },
-      input_data: { ...params },
+      input_data: { ...data },
     });
 
     return alterationPackage;
@@ -100,12 +117,9 @@ const applyAlteration = ({ alteration_hook_key, policy, policyholder, alteration
       sum_assured: alteration_package.sum_assured,
       base_premium: alteration_package.monthly_premium,
       monthly_premium: alteration_package.monthly_premium,
+      module: alteration_package.module,
       end_date: moment(policy.end_date),
       start_date: moment(policy.start_date),
-      charges: policy.charges,
-      module: {
-        ...alteration_package.module,
-      },
     });
 
     return alteredPolicy;

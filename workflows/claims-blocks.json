@@ -1,115 +1,263 @@
 [
   {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
     "block": {
-      "key": "payout_details_heading",
-      "type": "heading",
-      "title": "Claim for policy {{ claim.policy.policy_number }}"
+      "type": "markdown",
+      "key": "incident_heading",
+      "markdown": "## Incident description"
     }
   },
   {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
     "block": {
+      "type": "radio",
+      "key": "claim_type",
+      "title": "Claim type",
+      "options": [
+        {
+          "key": "illness",
+          "value": "Illness"
+        },
+        {
+          "key": "death",
+          "value": "Death"
+        }
+      ]
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "input.date",
       "key": "incident_date",
-      "type": "input.date",
       "title": "Date of incident",
-      "default_value": ""
+      "placeholder": "YYYY-MM-DD"
     }
   },
   {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
     "block": {
-      "key": "accidental_death_incident_date_cover_period_warning",
-      "type": "alert",
-      "color": "warning",
-      "markdown": "Warning: Date of incident is before the cover start date."
-    },
-    "show_if": "{{#dateBetween (dateFormat (dateAdd claim.block_states.incident_date.value days=1) format='YYYYMMDD') claim.policy.start_date (dateAdd claim.policy.start_date years=5) includeStart=true}}false{{else}}true{{/dateBetween}}"
-  },
-  {
-    "block": {
-      "key": "death_payout_divider_1",
-      "type": "divider"
-    }
-  },
-  {
-    "block": {
-      "key": "claim_payout_details_heading",
-      "type": "heading",
-      "title": "Death benefit"
-    }
-  },
-  {
-    "block": {
-      "key": "death_date",
       "type": "input.date",
-      "title": "Date of death",
-      "default_value": ""
+      "key": "reported_date",
+      "title": "Date reported",
+      "placeholder": "YYYY-MM-DD",
+      "default_value": "{{dateNow}}"
     }
   },
   {
+    "show_if": "{{if (dateDifference claim.block_states.reported_date.value claim.block_states.incident_date.value measurement='days') '>' 60}}",
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
     "block": {
-      "key": "death_date_warning",
       "type": "alert",
-      "color": "warning",
-      "markdown": "Warning: Date of death is before date of incident"
-    },
-    "show_if": "{{#dateBetween (dateFormat claim.block_states.death_date.value format='YYYYMMDD') (dateFormat claim.block_states.incident_date.value format='YYYYMMDD') (dateAdd claim.block_states.incident_date.value years=5) includeStart=true}}false{{else}}true{{/dateBetween}}"
+      "key": "date_warning_past",
+      "markdown": "Warning: Claims must be logged within 60 days of the incident occurring.",
+      "color": "danger"
+    }
   },
   {
+    "show_if": "{{if (if claim.block_states.claim_type.value '===' 'illness') '&&' (if (dateDifference claim.block_states.incident_date.value claim.policy.start_date measurement='days') '<' 30)}}",
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
     "block": {
-      "key": "natural_death_incident_date_cover_period_warning",
       "type": "alert",
-      "color": "warning",
-      "markdown": "Warning: Date of death is before the cover start date."
-    },
-    "show_if": "{{#dateBetween (dateFormat (dateAdd claim.block_states.death_date.value days=1) format='YYYYMMDD') claim.policy.start_date (dateAdd claim.policy.start_date years=5)}}false{{else}}true{{/dateBetween}}"
+      "key": "date_warning_illness",
+      "markdown": "Warning: Claim for illness must be outside of the waiting period of 1 month.",
+      "color": "danger"
+    }
   },
   {
+    "show_if": "{{if (if claim.block_states.claim_type.value '===' 'death') '&&' (if (dateDifference claim.block_states.incident_date.value claim.policy.start_date measurement='days') '<' 90)}}",
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
     "block": {
-      "key": "claim_payout_request",
+      "type": "alert",
+      "key": "date_warning_death",
+      "markdown": "Warning: Claim for death must be outside of the waiting period of 3 months.",
+      "color": "danger"
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "input.paragraph",
+      "key": "incident_description",
+      "title": "Description of incident"
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "divider",
+      "key": "claim_type_divider"
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "markdown",
+      "key": "payment_heading",
+      "markdown": "## Payment details"
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "dropdown",
+      "key": "bank_name",
+      "title": "Bank name",
+      "options": [
+        {
+          "key": "absa",
+          "value": "ABSA"
+        },
+        {
+          "key": "african_bank",
+          "value": "African Bank"
+        },
+        {
+          "key": "bidvest",
+          "value": "Bidvest"
+        },
+        {
+          "key": "capitec",
+          "value": "Capitec"
+        },
+        {
+          "key": "discovery_bank",
+          "value": "Discovery Bank"
+        },
+        {
+          "key": "fnb",
+          "value": "FNB"
+        },
+        {
+          "key": "investec",
+          "value": "Investec"
+        },
+        {
+          "key": "ithala",
+          "value": "Ithala"
+        },
+        {
+          "key": "nedbank",
+          "value": "Nedbank"
+        },
+        {
+          "key": "old_mutual",
+          "value": "Old Mutual"
+        },
+        {
+          "key": "postbank",
+          "value": "Postbank"
+        },
+        {
+          "key": "standard_bank",
+          "value": "Standard Bank"
+        },
+        {
+          "key": "tyme_bank",
+          "value": "TymeBank"
+        }
+      ]
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "input.number",
+      "key": "bank_code",
+      "title": "Branch code"
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "dropdown",
+      "key": "account_type",
+      "title": "Account type",
+      "options": [
+        {
+          "key": "savings_account",
+          "value": "Savings account"
+        },
+        {
+          "key": "cheque_account",
+          "value": "Cheque account"
+        }
+      ]
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": false,
+    "required_if": false,
+    "block": {
+      "type": "input.number",
+      "key": "account_number",
+      "title": "Account number"
+    }
+  },
+  {
+    "show_if": true,
+    "hide_if": false,
+    "disabled_if": "{{if (if claim.approval_status '===' 'approved') '||' (if claim.approval_status '===' 'goodwill') '!' true}}",
+    "required_if": false,
+    "block": {
       "type": "payout_request",
+      "key": "payout_block",
+      "title": "Claim payout",
+      "amount": "{{ claim.policy.sum_assured }}",
+      "description": "Monetary payout to be actioned on approval of claim {{ claim.claim_number }}",
       "payee": {
         "type": "policyholder",
         "amount": "{{ claim.policy.sum_assured }}",
-        "percentage": 100,
+        "percentage": "100",
+        "policyholder_id": "{{ claim.policy.policyholder_id }}",
         "payment_details": {
           "type": "eft",
           "details": {
-            "bank_name": "{{ claim.policy.beneficiaries.0.payment_details.details.bank_name }}",
-            "branch_code": "{{ claim.policy.beneficiaries.0.payment_details.details.branch_code }}",
-            "account_type": "{{ claim.policy.beneficiaries.0.payment_details.details.account_type }}",
-            "account_number": "{{ claim.policy.beneficiaries.0.payment_details.details.account_number }}"
+            "bank_name": "{{ claim.block_states.bank_name.value }}",
+            "branch_code": "{{ claim.block_states.bank_code.value }}",
+            "account_type": "{{ claim.block_states.account_type.value }}",
+            "account_number": "{{ claim.block_states.account_number.value }}"
           }
-        },
-        "policyholder_id": "{{ claim.policy.policyholder_id }}"
-      },
-      "title": "Payout request",
-      "amount": "{{ claim.policy.sum_assured }}",
-      "description": "Monetary payout to be actioned on approval of claim {{ claim.claim_number }} "
-    },
-    "disabled_if": "{{#ifEquals claim.approval_status 'approved'}}false{{else}}true{{/ifEquals}}"
-  },
-  {
-    "block": {
-      "key": "fulfillment_request_divider_1",
-      "type": "divider"
-    }
-  },
-  {
-    "block": {
-      "key": "fulfillment_heading_1",
-      "type": "heading",
-      "title": "Extraction benefit"
-    }
-  },
-  {
-    "block": {
-      "key": "extraction_fulfillment_request",
-      "type": "fulfillment_request",
-      "title": "Request details",
-      "description": "Extraction request",
-      "fulfillment_data": {
-        "extraction_date": "{{claim.block_states.incident_date.value}}"
-      },
-      "fulfillment_type_key": "extraction"
+        }
+      }
     }
   }
 ]

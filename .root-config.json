@@ -109,8 +109,17 @@
       }
     },
     "claims": {
-      "checklistItems": [],
-      "documentLabels": [],
+      "checklistItems": [
+        "Is the date of claim within 60 days of the incident occurring?",
+        "Have all the documents been provided?",
+        "Is this the first claim for the dinosaur?",
+        "Are all the premiums up to date upon the claim reported date?"
+      ],
+      "documentLabels": [
+        "Dinosaur Claim form",
+        "Proof of Payment",
+        "NDR Form"
+      ],
       "enableClaimAssignments": false,
       "enableLegacyClaimsSchema": true
     },
