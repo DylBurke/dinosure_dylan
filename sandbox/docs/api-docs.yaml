@@ -1,0 +1,135 @@
+- id: dinosure_dylan-quote
+  title: '[Add Title]'
+  hideInSidebar: true
+  copyComponents:
+    id: dinosure_dylan
+    type: list
+    title: '[Add Title]'
+    content:
+      - type: markdown
+        content: '[Add Description]'
+      - label: start_date
+        markdownDescription: _date_. [Add Description]
+      - label: cover_amount
+        markdownDescription: _number_. [Add Description]
+      - label: birth_date
+        markdownDescription: _date_. [Add Description]
+      - label: species
+        markdownDescription: _any_. [Add Description]
+      - label: health_checks_updated
+        markdownDescription: _boolean_. [Add Description]
+  exampleComponents:
+    - id: '[Add ID]-quote-endpoint'
+      type: code
+      blockType: endpoint
+      languages:
+        bash: POST https://sandbox.rootplatform.com//v1/insurance/quotes
+      forceLanguage: bash
+    - id: '[Add ID]-quote-request'
+      type: code
+      blockType: request
+      languages:
+        curl: >-
+          curl https://sandbox.rootplatform.com//v1/insurance/quotes --request
+          POST 
+           -u [API Key]: 
+           -H "Content-Type: application/json" 
+           -d '{
+            "start_date": "1903-07-11T10:03:24.0Z",
+            "cover_amount": 7026535,
+            "birth_date": "1960-01-08T06:52:57.0Z",
+            "species": "Iguanodon",
+            "health_checks_updated": false
+          }'
+    - id: '[Add ID]-quote-request'
+      type: code
+      blockType: response
+      languages:
+        json: |-
+          {
+            "start_date": "1903-07-11T10:03:24.0Z",
+            "cover_amount": 7026535,
+            "birth_date": "1960-01-08T06:52:57.0Z",
+            "species": "Iguanodon",
+            "health_checks_updated": false
+          }
+      forceLanguage: json
+- id: dinosure_dylan-application
+  title: '[Add Title]'
+  hideInSidebar: true
+  copyComponents:
+    id: dinosure_dylan
+    type: list
+    title: '[Add Title]'
+    content:
+      - type: markdown
+        content: '[Add Description]'
+  exampleComponents:
+    - id: '[Add ID]-application-endpoint'
+      type: code
+      blockType: endpoint
+      languages:
+        bash: POST https://sandbox.rootplatform.com//v1/insurance/applications
+      forceLanguage: bash
+    - id: '[Add ID]-application-request'
+      type: code
+      blockType: request
+      languages:
+        curl: >-
+          curl https://sandbox.rootplatform.com//v1/insurance/applications
+          --request POST 
+           -u [API Key]: 
+           -H "Content-Type: application/json" 
+           -d '{}'
+    - id: '[Add ID]-application-request'
+      type: code
+      blockType: response
+      languages:
+        json: '{}'
+      forceLanguage: json
+- id: dinosure_dylan-policy
+  title: 'Create a Policy'
+  hideInSidebar: true
+  copyComponents:
+    id: dinosure_dylan
+    type: list
+    title: 'Policy Creation'
+    content:
+      - type: markdown
+        content: 'Create a policy from an approved application'
+      - label: application_id
+        markdownDescription: _string_. The ID of the approved application
+      - label: policy_start_date
+        markdownDescription: _date_. The start date for the policy
+  exampleComponents:
+    - id: 'dinosure-policy-endpoint'
+      type: code
+      blockType: endpoint
+      languages:
+        bash: POST https://sandbox.rootplatform.com//v1/insurance/policies
+      forceLanguage: bash
+    - id: 'dinosure-policy-request'
+      type: code
+      blockType: request
+      languages:
+        curl: >-
+          curl https://sandbox.rootplatform.com//v1/insurance/policies --request POST
+           -u [API Key]:
+           -H "Content-Type: application/json"
+           -d '{
+            "application_id": "{{application_id}}",
+            "monthly_premium": {{monthly_premium}},
+            "base_premium": {{base_premium}},
+            "billing_amount": {{billing_amount}}
+          }'
+    - id: 'dinosure-policy-response'
+      type: code
+      blockType: response
+      languages:
+        json: |-
+          {
+            "policy_id": "{{policy_id}}",
+            "policy_number": "{{policy_number}}",
+            "status": "pending_initial_payment"
+          }
+      forceLanguage: json

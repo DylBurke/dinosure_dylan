@@ -19,7 +19,7 @@ describe('Dinosure Alteration Hooks', function () {
       };
 
       const alterationData = {
-        cover_amount: 7500000, // R75,000 in cents
+        cover_amount: 7500000 // R75,000 in cents
       };
 
       const validation = validateAlterationPackageRequest(params, alterationData);
@@ -36,7 +36,7 @@ describe('Dinosure Alteration Hooks', function () {
       };
 
       const alterationData = {
-        cover_amount: 5000 * 100, // R5,000 - too low
+        cover_amount: 5000 * 100 // R5,000 - too low
       };
 
       const validation = validateAlterationPackageRequest(params, alterationData);
@@ -64,7 +64,7 @@ describe('Dinosure Alteration Hooks', function () {
       };
 
       const alterationData = {
-        cover_amount: 7500000, // R75,000 in cents
+        cover_amount: 7500000 // R75,000 in cents
       };
 
       const alterationPackage = getAlteration(params, alterationData);
@@ -91,7 +91,7 @@ describe('Dinosure Alteration Hooks', function () {
       };
 
       const alterationData = {
-        cover_amount: 7500000, // R75,000 in cents
+        cover_amount: 7500000 // R75,000 in cents
       };
 
       const alterationPackage = getAlteration(params, alterationData);
